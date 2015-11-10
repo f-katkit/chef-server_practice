@@ -26,13 +26,26 @@ ssh-keygen -N "" -C chef-work -f ~/.ssh/id_rsa
 
 # setup knife
 # knife configure --init
+## here should I put the config file? [/home/vagrant/.chef/knife.rb]
+## Please enter the chef server URL: [https://chef-work:443] https://chef-server
+## Please enter a name for the new user: [vagrant]
+## Please enter the existing admin name: [admin]
+## Please enter the location of the existing admin's private key: [/etc/chef-server/admin.pem] /home/vagrant/.chef/admin.pem
+## Please enter the validation clientname: [chef-validator]
+## Please enter the location of the validation key: [/etc/chef-server/chef-validator.pem] /home/vagrant/.chef/chef-validator.pem
+## Please enter the path to a chef repository (or leave blank):
+## Creating initial API user...
+## Please enter a password for the new user:
+## Created user[vagrant]
+## Configuration file written to /home/vagrant/.chef/knife.rb
+
 # knife ssl fetch
 # knife ssl check
 # knife user list
 # knife client list
 
 # setup chef node
-# bundle exec knife bootstrap chef-client -x vagrant -P vagrant --sudo
+# knife bootstrap chef-client -x vagrant -P vagrant --sudo
 
 
 

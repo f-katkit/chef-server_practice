@@ -14,25 +14,24 @@ curl -s https://packagecloud.io/install/repositories/chef/stable/script.rpm.sh |
 sudo yum install -y chef-server-11.1.6-1.el6.x86_64
 
 #install ruby (*setup rbenv)
-sudo -u vagrant -i git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
-sudo -u vagrant -i git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
+git clone https://github.com/sstephenson/rbenv.git ~/.rbenv
+git clone https://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
 
-sudo -u vagrant -i echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
-sudo -u vagrant -i echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
-sudo -u vagrant -i source .bash_profile
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bash_profile
+echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
+source .bash_profile
 
-sudo -u vagrant -i rbenv install 2.2.3
-sudo -u vagrant -i rbenv rehash
-sudo -u vagrant -i rbenv global 2.2.3
+rbenv install 2.2.3
+rbenv rehash
+rbenv global 2.2.3
 
 #setting for chef
-gem install padrino
+rbenv exec gem install padrino
 
 sudo chef-server-ctl reconfigure
 sudo chef-server-ctl test
 
-#install chef-client
-sudo curl -L http://www.opscode.com/chef/install.sh | sudo bash -s - -v 11.14.6
+#place ssl-key
 mkdir ~/.chef
 cd /etc/chef-server/
 sudo cp -r /etc/chef-server/admin.pem chef-validator.pem ~/.chef

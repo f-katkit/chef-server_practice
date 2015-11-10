@@ -1,5 +1,7 @@
 Vagrant.configure("2") do |config|
 
+  config.vbguest.auto_update = false
+
   $script_for_server = <<EOF
   sudo chmod +x /vagrant/script/chef_server.sh
   sudo -u vagrant -i /vagrant/script/chef_server.sh
@@ -22,7 +24,7 @@ EOF
   config.vm.define :chef_server do |host|
     host.vm.box = "centos64"
     host.vm.hostname = "chef-server"
-    host.vm.box_url = 'http://download.parallels.com/desktop/vagrant/centos64.box'
+    host.vm.box_url = 'https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box'
     host.vm.network :private_network, ip: "192.168.33.12"
     host.vm.provision :shell, :inline => $script_for_server
  end
@@ -37,7 +39,7 @@ EOF
 
   config.vm.define :chef_client do |host|
     host.vm.box = "centos65"
-    host.vm.box_url = 'http://download.parallels.com/desktop/vagrant/centos64.box'
+    host.vm.box_url = 'https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box'
     host.vm.hostname = "chef-client"
     host.vm.network :private_network, ip: "192.168.33.13"
     host.vm.provision :shell, :inline => $script_for_client
